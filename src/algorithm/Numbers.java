@@ -1,5 +1,6 @@
 package algorithm;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +23,9 @@ public class Numbers {
         int[] num = new int[1000000];
         storeRandomNumbers(num);
         ConnectToSqlDB connectToSqlDB = new ConnectToSqlDB();
+        for(int a=0; a< num.length; a++){
+            System.out.println(num[a]);
+        }
         //Selection Sort
         Sort algo = new Sort();
         algo.selectionSort(num);
@@ -41,7 +45,32 @@ public class Numbers {
 
         //Come to conclusion about which Sorting Algo is better in given data set.
 
+        //Merge
+        algo.mergeSort(num);
+        long mergeSortExecutionsTime=algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Merge Sort take: " + mergeSortExecutionsTime + " milli sec");
+
+        //Bubble
+        algo.bubbleSort(num);
+        long bubbleSortExecutionTime= algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Bubble Sort take: " + bubbleSortExecutionTime + " milli sec");
+
+        //QuickSort
+        algo.quickSort(num, 0, 1000000);
+        long QuickSortExecutionTime= algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Quick Sort take: " + QuickSortExecutionTime + " milli sec");
+
+        //Bucket Sort
+        algo.bucketSort(num);
+        long bucketSortExecutionTime= algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Bucket Sort take: " + bucketSortExecutionTime  + " milli sec");
+
+        //Shell Sort
+        algo.shellSort(num);
+        long shellSortExecutionTime= algo.executionTime;
+        System.out.println("Total Execution Time of " + num.length + " numbers in Shell Sort take: " + shellSortExecutionTime + " milli sec");
     }
+
 
     public static void storeRandomNumbers(int[] num) {
         Random rand = new Random();
