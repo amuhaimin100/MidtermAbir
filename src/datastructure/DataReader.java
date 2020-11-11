@@ -1,5 +1,8 @@
 package datastructure;
 
+import java.io.*;
+import java.util.Properties;
+
 public class DataReader {
 
     public static void main(String[] args) {
@@ -20,6 +23,38 @@ public class DataReader {
 
         String textFile = System.getProperty("user.dir") + "/src/data/self-driving-car.txt";
 
+        String data = null;
+        try {
+            data = getDataFromTextFile("src/data/self-driving-car");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(data);
+
     }
+
+    public static String getPropertyFromFile(String filePath, String key) throws IOException {
+        Properties properties = new Properties();
+        InputStream inputStream = new FileInputStream(filePath);
+        properties.load(inputStream);
+        String data = properties.getProperty(key);
+        return data;
+    }
+
+    public static String getDataFromTextFile(String filePath) throws IOException {
+        String tmpContainer;
+        String finalText = "";
+
+        FileReader fileReader = new FileReader(filePath);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        while ((tmpContainer = bufferedReader.readLine()) != null) {
+            finalText = finalText + "\n" + tmpContainer;
+        }
+        return finalText;
+    }
+
+
 
 }
