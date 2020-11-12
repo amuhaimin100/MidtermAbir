@@ -1,5 +1,10 @@
 package json.parser;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -7,11 +12,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class JsonReaderUtil {
 
@@ -52,9 +52,23 @@ public class JsonReaderUtil {
         for (int i = 0; i < jsonArray.size() - 1; i++) {
             try {
                 JsonObject jsonobject = jsonArray.get(i).getAsJsonObject();
-                //you code start here
+
                 String empEmail = jsonobject.get("empEmail").toString();
                 System.out.println(empEmail);
+
+                //you code start here
+                // get employeeName
+                String employeeName = jsonobject.get("empName").toString();
+                System.out.print(employeeName);
+
+                // get employee salary
+                String empSalary = jsonobject.get("salary").toString();
+                System.out.print(empSalary);
+
+                // get department
+                String dept = jsonobject.get("department").toString();
+                System.out.println(dept);
+
 
             } catch (Exception ex) {
 
